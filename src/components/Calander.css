@@ -1,0 +1,10 @@
+.weekday-header {
+    font-size: 1em;
+}
+.week-item {
+    border-bottom: #eee 1px solid;
+}
+
+.week-item:last-child {
+    border-bottom: white 1px solid;
+}

@@ -1,0 +1,7 @@
+.day-item {
+    height: 120px;
+    font-size: 14pt;
+    cursor: pointer;
+    padding-top: 10px;
+    font-size: 1em;
+}

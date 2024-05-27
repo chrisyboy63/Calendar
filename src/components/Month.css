@@ -1,0 +1,8 @@
+
+.week-item {
+    border-bottom: #eee 1px solid;
+}
+
+.week-item:last-child {
+    border-bottom: none;
+}

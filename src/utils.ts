@@ -63,7 +63,7 @@ const calcDate = (d: Date) => {
         Day: d.getDate(),
         Month: d.getMonth(),
         Year: d.getFullYear(),
-        DayName: DaysAsArray[d.getDate()],
+        DayName: DaysAsArray[d.getDay()],
         MonthName: MonthsAsArray[d.getMonth()]
     };
 

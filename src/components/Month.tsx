@@ -46,8 +46,6 @@ export const Month = () => {
         return rows;
     }
 
-    console.log(`Rendering Days`)
-
     return (
     <>
        {renderMonth()} 

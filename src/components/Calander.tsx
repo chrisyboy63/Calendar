@@ -8,7 +8,7 @@ interface CalanderProps {
     SelectedDate: Date
 }
 
-const Calander = ({SelectedDate}: CalanderProps) => {
+const Calander = ({}: CalanderProps) => {
     
     return (
         <CalanderProvider>

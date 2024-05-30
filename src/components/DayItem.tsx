@@ -1,26 +1,23 @@
 import React, { useContext } from 'react';
 import './DayItem.css'
-import { CalanderContext, CalanderProviderValue } from './CalanderContext';
-import { calcDate } from '../utils';
 
 interface DayItemProps {
-    IsBlank: boolean;
+    IsNotBlank: boolean;
     DayNumber?: number;
-    SelectedDay?: number;
+    IsSelected?: boolean;
     HandleDateChanged?: (newDay?: number) => void;
 }
 
 export const DayItem = React.memo((props: DayItemProps) => {
     const {
-        IsBlank,
+        IsNotBlank,
         DayNumber,
-        SelectedDay,
+        IsSelected,
+        HandleDateChanged
     } = props
     
-    const {selectedDate, setSelectedDate} = useContext(CalanderContext) as CalanderProviderValue;
-    const cDate = calcDate(selectedDate);
 
     return (
-        <div key={DayNumber} className="col day-item" onClick={() => setSelectedDate(new Date(cDate.Year, cDate.Month, DayNumber))}><span className={`${SelectedDay && DayNumber && SelectedDay === DayNumber && "badge rounded-pill text-bg-primary"}`}>{IsBlank && DayNumber}</span></div>
+        <div key={DayNumber} className={`col day-item ${!IsNotBlank && 'day-item-blank'}`} onClick={() => IsNotBlank && HandleDateChanged && HandleDateChanged(DayNumber)}><span className={`${ IsSelected && "badge rounded-pill text-bg-primary"}`}>{IsNotBlank && DayNumber}</span></div>
     )
 });

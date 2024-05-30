@@ -8,7 +8,7 @@ const getTextDate = (date: number) => {
     }
 
     const dateStr = date.toString()
-    const lastDigit = parseInt(dateStr.substring(dateStr.length - 1, 1));
+    const lastDigit = dateStr.length === 1 ? parseInt(dateStr) : parseInt(dateStr.substring(dateStr.length, 1));
 
     switch (lastDigit) {
         case 1:

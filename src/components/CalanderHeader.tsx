@@ -25,22 +25,7 @@ export const CalanderHeader = () => {
             <div className="col-6">
                 <div className="row">
                     <div className="col-auto">
-                        <span className="display-4">{getTextDate(cDate.Day)}</span>
-                    </div>
-                    <div className="col-auto">
-                        <div className="row">
-                            <div className="col-12">
-                                <h1 className="m-0">{cDate.MonthName}</h1>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-12">
-                                <b>{cDate.DayName}</b>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-1">
-                        <b>{cDate.Year}</b>
+                        <span className="display-6 m-0">{getTextDate(cDate.Day)} {cDate.MonthName} {cDate.Year}</span>
                     </div>
                 </div>
             </div>

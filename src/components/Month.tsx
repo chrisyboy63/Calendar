@@ -1,12 +1,17 @@
-import { useContext } from "react";
+import { useCallback, useContext, useReducer } from "react";
 import { CalanderContext, CalanderProviderValue } from "./CalanderContext";
 import { DayItem } from "./DayItem";
 import './Month.css'
 
+
 export const Month = () => {
-    const {selectedDate} = useContext(CalanderContext) as CalanderProviderValue;
+    const {selectedDate, setSelectedDate} = useContext(CalanderContext) as CalanderProviderValue;
     const selectedDay = selectedDate.getDate(), selectedMonth = selectedDate.getMonth(), selectedYear = selectedDate.getFullYear();
     const startOfMonth = new Date(selectedYear, selectedMonth, 1);
+
+    const handleDateChangeCallback = useCallback((dayNum: number | undefined) => {
+        setSelectedDate(new Date(selectedYear, selectedMonth, dayNum));
+    }, []);
 
     function renderMonth() {
         const rows = [];
@@ -20,12 +25,12 @@ export const Month = () => {
             const startWeekNumber = dayCounter;
 
             const weekRow = (
-                <div key={rows.length} className="row  week-item">
-                    {[...Array(startBlanks)].map((o, i) => <DayItem key={0 - i} IsBlank={true} />)}
+                <div key={rows.length} className="row week-item">
+                    {[...Array(startBlanks)].map((o, i) => <DayItem key={`blank-${0 - i}`} IsNotBlank={false} />)}
                     {[...Array(numberOfDaysInWeek)].map((o, i) => {
                         let weekDayNum = startWeekNumber + i;
                         const dayItem = (
-                            <DayItem key={weekDayNum} DayNumber={weekDayNum} SelectedDay={selectedDay} IsBlank={(weekDayNum <= maxNumberOfDays)} />
+                            <DayItem key={`day-${weekDayNum}`} HandleDateChanged={handleDateChangeCallback} DayNumber={weekDayNum} IsSelected={selectedDay === weekDayNum} IsNotBlank={(weekDayNum <= maxNumberOfDays)} />
                         )
                         return dayItem;
                     })
@@ -41,9 +46,11 @@ export const Month = () => {
         return rows;
     }
 
+    console.log(`Rendering Days`)
+
     return (
     <>
-        {renderMonth()}
+       {renderMonth()} 
     </>
     );
 }
